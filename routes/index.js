@@ -45,13 +45,5 @@ router.get('/events', function(req, res, next) {
     })
 });
 
-router.get('/goals', function(req, res, next) {
-  Event
-    .query()
-    .eager('goals')
-    .then(accounts => {
-      res.json(accounts)
-    })
-});
 
 module.exports = router;
