@@ -3,7 +3,7 @@ require('dotenv').config()
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://'
+    connection: 'postgres://localhost/networkup'
   },
 
   production: {
