@@ -30,7 +30,6 @@ router.get('/events/:id', function(req, res, next) {
 });
 
 router.post('/events', function(req, res, next) {
-  console.log(req.body);
   Event
     .query()
     .insertGraph(req.body)
@@ -38,6 +37,16 @@ router.post('/events', function(req, res, next) {
       res.json(result)
     })
 })
+
+router.get('/events/goals/:id', function(req, res, next) {
+  Event
+    .query()
+    .where('id', '=', req.params.id)
+    .eager('[goals]')
+    .then(accounts => {
+      res.json(accounts)
+    })
+});
 
 
 
