@@ -4,8 +4,12 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       var goals = [{
         id: 1,
-        description: 'Introduce yourself to 5 different people/groups of people.',
-        completed: true,
+        one_description: 'Introduce yourself to 5 different people/groups of people.',
+        one_completed: true,
+        two_description: "Give your business card to at least one person.",
+        two_completed: true,
+        three_description: "Get a business card from someone you had a meaningful conversation with.",
+        three_completed: true,
         event_id: 1
       }];
       return knex('goal').insert(goals);

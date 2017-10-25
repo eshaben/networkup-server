@@ -31,18 +31,57 @@ router.get('/events/:id', function(req, res, next) {
 
 router.post('/events', function(req, res, next) {
   console.log(req.body);
-  knex('event').insert({
-    checked_in: true,
-    checked_out: false,
-    account_id: req.body.account_id
-  })
-  .returning('*')
-  .then(event => {
-    res.json(event)
-  })
+  Event
+    .query()
+    .insertGraph(req.body)
+    .then(result => {
+      res.json(result)
+    })
 })
 
 
+
+// router.get('/challenges', function(req, res, next) {
+//   Account
+//     .query()
+//     .eager('challenges')
+//     .then(accounts => {
+//       res.json(accounts)
+//     })
+// });
+//
+// router.get('/wallets', function(req, res, next) {
+//   Account
+//     .query()
+//     .eager('wallets')
+//     .then(accounts => {
+//       res.json(accounts)
+//     })
+// });
+
+// router.post('/events', function(req, res, next) {
+//   Event
+//     .query()
+//     .insertGraph({
+//         checked_in: true,
+//         checked_out: false,
+//         account_id: req.body.id
+//
+//         //I cannot do this because I don't have
+//         //the event ID to enter into the goals
+//         //section below. UGH. will need to post
+//         //check in and then grab id for event?
+//
+//         goals: [{
+//           description: req.body.goalOne,
+//           completed: false,
+//           event_id:
+//         }]
+//     })
+//     .then(accounts => {
+//       res.json(accounts)
+//     })
+// });
 
 
 module.exports = router;
