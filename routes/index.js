@@ -29,6 +29,20 @@ router.get('/events/:id', function(req, res, next) {
     })
 });
 
+router.post('/events', function(req, res, next) {
+  console.log(req.body);
+  knex('event').insert({
+    checked_in: true,
+    checked_out: false,
+    account_id: req.body.account_id
+  })
+  .returning('*')
+  .then(event => {
+    res.json(event)
+  })
+})
+
+
 
 
 module.exports = router;
