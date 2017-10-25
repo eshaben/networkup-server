@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const knex = require('../db/knex')
+const jwt = require('jwt-simple')
 
 const Account = require('../models/Account.js')
 const Badge = require('../models/Badge.js')
@@ -18,32 +19,16 @@ router.get('/', function(req, res, next) {
     })
 });
 
-router.get('/challenges', function(req, res, next) {
+router.get('/events/:id', function(req, res, next) {
   Account
     .query()
-    .eager('challenges')
-    .then(accounts => {
-      res.json(accounts)
-    })
-});
-
-router.get('/wallets', function(req, res, next) {
-  Account
-    .query()
-    .eager('wallets')
-    .then(accounts => {
-      res.json(accounts)
-    })
-});
-
-router.get('/events', function(req, res, next) {
-  Account
-    .query()
+    .where('account.id', '=', req.params.id)
     .eager('[events, events.[goals, retros]]')
     .then(accounts => {
       res.json(accounts)
     })
 });
+
 
 
 module.exports = router;
