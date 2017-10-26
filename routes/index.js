@@ -58,7 +58,7 @@ router.get('/events/retros/:id', function(req, res, next) {
     })
 });
 
-router.put('/events/:id', function(req, res, next) {
+router.put('/events/goals/:id', function(req, res, next) {
   Event
     .query()
     .upsertGraph({
@@ -70,6 +70,19 @@ router.put('/events/:id', function(req, res, next) {
         two_completed: req.body.two,
         three_completed: req.body.three
       }
+    })
+    .then(result => {
+      res.json(result)
+    })
+})
+
+router.put('/events/retros/:id', function(req, res, next) {
+  console.log(req.body);
+  Event
+    .query()
+    .upsertGraph({
+      id: req.params.id,
+      retros: req.body
     })
     .then(result => {
       res.json(result)
