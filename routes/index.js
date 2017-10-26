@@ -48,7 +48,33 @@ router.get('/events/goals/:id', function(req, res, next) {
     })
 });
 
+router.get('/events/retros/:id', function(req, res, next) {
+  Event
+    .query()
+    .where('id', '=', req.params.id)
+    .eager('[retros]')
+    .then(accounts => {
+      res.json(accounts)
+    })
+});
 
+router.put('/events/:id', function(req, res, next) {
+  Event
+    .query()
+    .upsertGraph({
+      id: req.params.id,
+      checked_out: true,
+      goals: {
+        id: req.params.id,
+        one_completed: req.body.one,
+        two_completed: req.body.two,
+        three_completed: req.body.three
+      }
+    })
+    .then(result => {
+      res.json(result)
+    })
+})
 
 // router.get('/challenges', function(req, res, next) {
 //   Account
