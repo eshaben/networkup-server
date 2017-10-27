@@ -89,14 +89,23 @@ router.put('/events/retros/:id', function(req, res, next) {
     })
 })
 
-// router.get('/challenges', function(req, res, next) {
-//   Account
-//     .query()
-//     .eager('challenges')
-//     .then(accounts => {
-//       res.json(accounts)
-//     })
-// });
+router.get('/challenges', function(req, res, next) {
+  Challenge
+    .query()
+    .then(result => {
+      res.json(result)
+    })
+})
+
+router.get('/challenges/:id', function(req, res, next) {
+  Account
+    .query()
+    .where('account.id', '=', req.params.id)
+    .eager('challenges')
+    .then(accounts => {
+      res.json(accounts)
+    })
+});
 //
 // router.get('/wallets', function(req, res, next) {
 //   Account
