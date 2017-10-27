@@ -8,6 +8,7 @@ const Badge = require('../models/Badge.js')
 const Wallet = require('../models/Wallet.js')
 const Event = require('../models/Event.js')
 const Challenge = require('../models/Challenge.js')
+const Account_Challenge = require('../models/Account_Challenge.js')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -89,6 +90,7 @@ router.put('/events/retros/:id', function(req, res, next) {
     })
 })
 
+//get a list of all of the challenges
 router.get('/challenges', function(req, res, next) {
   Challenge
     .query()
@@ -97,44 +99,22 @@ router.get('/challenges', function(req, res, next) {
     })
 })
 
-router.get('/challenges/:id', function(req, res, next) {
-  Account
+//get challenge completion by User ID
+router.get('/account_challenges/:id', function(req, res, next) {
+  Account_Challenge
     .query()
-    .where('account.id', '=', req.params.id)
+    .where('account_id', '=', req.params.id)
     .eager('challenges')
-    .then(accounts => {
-      res.json(accounts)
+    .then(result => {
+      res.json(result)
     })
-});
+})
+
 //
 // router.get('/wallets', function(req, res, next) {
 //   Account
 //     .query()
 //     .eager('wallets')
-//     .then(accounts => {
-//       res.json(accounts)
-//     })
-// });
-
-// router.post('/events', function(req, res, next) {
-//   Event
-//     .query()
-//     .insertGraph({
-//         checked_in: true,
-//         checked_out: false,
-//         account_id: req.body.id
-//
-//         //I cannot do this because I don't have
-//         //the event ID to enter into the goals
-//         //section below. UGH. will need to post
-//         //check in and then grab id for event?
-//
-//         goals: [{
-//           description: req.body.goalOne,
-//           completed: false,
-//           event_id:
-//         }]
-//     })
 //     .then(accounts => {
 //       res.json(accounts)
 //     })

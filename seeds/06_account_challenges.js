@@ -4,6 +4,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       var account_challenges = [{
         id: 1,
+        completed: true,
         account_id: 1,
         challenge_id: 1
       }];

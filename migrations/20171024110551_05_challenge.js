@@ -3,7 +3,6 @@ exports.up = function(knex, Promise) {
   table.increments();
   table.text('description').notNullable()
   table.integer('points').notNullable()
-  table.boolean('completed').notNullable()
   })
 };
 

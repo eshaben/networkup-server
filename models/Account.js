@@ -47,6 +47,14 @@ Account.relationMappings = {
         from: 'account.id',
         to: 'event.account_id'
       }
+    },
+    account_challenges: {
+      relation: Model.HasManyRelation,
+      modelClass: __dirname + '/Account_Challenge',
+      join : {
+        from: 'account.id',
+        to: 'account_challenge.account_id'
+      }
     }
 }
 
