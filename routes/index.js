@@ -59,6 +59,17 @@ router.get('/events/retros/:id', function(req, res, next) {
     })
 });
 
+router.get('/events/retros/byuser/:id', function(req, res, next) {
+  Event
+    .query()
+    .where('account_id', '=', req.params.id)
+    .andWhere('checked_out', '=', true)
+    .eager('[retros]')
+    .then(accounts => {
+      res.json(accounts)
+    })
+});
+
 router.put('/events/goals/:id', function(req, res, next) {
   Event
     .query()
@@ -90,7 +101,6 @@ router.put('/events/retros/:id', function(req, res, next) {
     })
 })
 
-//get a list of all of the challenges
 router.get('/challenges', function(req, res, next) {
   Challenge
     .query()
@@ -99,7 +109,6 @@ router.get('/challenges', function(req, res, next) {
     })
 })
 
-//get challenge completion by User ID
 router.get('/account_challenges/:id', function(req, res, next) {
   Account_Challenge
     .query()
