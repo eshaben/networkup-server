@@ -20,6 +20,14 @@ router.get('/', function(req, res, next) {
     })
 });
 
+router.get('/events', function(req, res, next) {
+  Event
+    .query()
+    .then(accounts => {
+      res.json(accounts)
+    })
+});
+
 router.get('/events/:id', function(req, res, next) {
   Account
     .query()
@@ -76,12 +84,7 @@ router.put('/events/goals/:id', function(req, res, next) {
     .upsertGraph({
       id: req.params.id,
       checked_out: true,
-      goals: {
-        id: req.params.id,
-        one_completed: req.body.one,
-        two_completed: req.body.two,
-        three_completed: req.body.three
-      }
+      goals: req.body
     })
     .then(result => {
       res.json(result)
