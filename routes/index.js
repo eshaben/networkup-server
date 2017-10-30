@@ -108,6 +108,18 @@ router.put('/events/goals/:id', function(req, res, next) {
     })
 })
 
+router.put('/events/checkout/:id', function(req, res, next) {
+  Event
+    .query()
+    .upsertGraph({
+      id: req.params.id,
+      checked_out: req.body.checked_out
+    })
+    .then(result => {
+      res.json(result)
+    })
+})
+
 router.put('/events/retros/:id', function(req, res, next) {
   Event
     .query()
