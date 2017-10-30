@@ -9,6 +9,7 @@ const Wallet = require('../models/Wallet.js')
 const Event = require('../models/Event.js')
 const Challenge = require('../models/Challenge.js')
 const Account_Challenge = require('../models/Account_Challenge.js')
+const Goal = require('../models/Goal.js')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,7 +29,16 @@ router.get('/events', function(req, res, next) {
     })
 });
 
-router.get('/events/:id', function(req, res, next) {
+router.get('/events/byeventid/:id', function(req, res, next) {
+  Event
+    .query()
+    .where('id', '=', req.params.id)
+    .then(accounts => {
+      res.json(accounts)
+    })
+});
+
+router.get('/events/:userid', function(req, res, next) {
   Account
     .query()
     .where('account.id', '=', req.params.id)
@@ -78,13 +88,18 @@ router.get('/events/retros/byuser/:id', function(req, res, next) {
     })
 });
 
-router.put('/events/goals/:id', function(req, res, next) {
-  Event
+router.post('/events/goals/:id', function(req, res, next) {
+  Goal
     .query()
-    .upsertGraph({
+    .insertGraph({
       id: req.params.id,
-      checked_out: true,
-      goals: req.body
+      one_description: req.body.one_description,
+      one_completed: false,
+      two_description: req.body.two_description,
+      two_completed: false,
+      three_description: req.body.three_description,
+      three_completed: false,
+      event_id: req.params.id
     })
     .then(result => {
       res.json(result)
@@ -92,7 +107,6 @@ router.put('/events/goals/:id', function(req, res, next) {
 })
 
 router.put('/events/retros/:id', function(req, res, next) {
-  console.log(req.body);
   Event
     .query()
     .upsertGraph({
