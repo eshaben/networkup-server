@@ -88,18 +88,20 @@ router.get('/events/retros/byuser/:id', function(req, res, next) {
     })
 });
 
-router.post('/events/goals/:id', function(req, res, next) {
-  Goal
+router.put('/events/goals/:id', function(req, res, next) {
+  Event
     .query()
-    .insertGraph({
+    .upsertGraph({
       id: req.params.id,
-      one_description: req.body.one_description,
-      one_completed: false,
-      two_description: req.body.two_description,
-      two_completed: false,
-      three_description: req.body.three_description,
-      three_completed: false,
-      event_id: req.params.id
+
+      goals: [{
+        one_description: req.body.one_description,
+        one_completed: false,
+        two_description: req.body.two_description,
+        two_completed: false,
+        three_description: req.body.three_description,
+        three_completed: false
+      }]
     })
     .then(result => {
       res.json(result)

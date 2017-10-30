@@ -21,7 +21,7 @@ Event.relationMappings = {
       modelClass: __dirname + '/Goal',
       join: {
         from: 'event.id',
-        to: 'goal.id'
+        to: 'goal.event_id'
       }
     },
     retros: {

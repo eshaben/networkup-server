@@ -12,7 +12,7 @@ Goal.relationMappings = {
       relation: Model.HasOneRelation,
       modelClass: __dirname + '/Event',
       join: {
-        from: 'goal.id',
+        from: 'goal.event_id',
         to: 'event.id'
       }
     }
