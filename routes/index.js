@@ -96,11 +96,11 @@ router.put('/events/goals/:id', function(req, res, next) {
 
       goals: [{
         one_description: req.body.one_description,
-        one_completed: false,
+        one_completed: req.body.one_completed,
         two_description: req.body.two_description,
-        two_completed: false,
+        two_completed: req.body.two_completed,
         three_description: req.body.three_description,
-        three_completed: false
+        three_completed: req.body.three_completed
       }]
     })
     .then(result => {
@@ -135,6 +135,16 @@ router.put('/events/retros/:id', function(req, res, next) {
 router.get('/challenges', function(req, res, next) {
   Challenge
     .query()
+    .then(result => {
+      res.json(result)
+    })
+})
+
+
+router.get('/challenges/:id', function(req, res, next) {
+  Challenge
+    .query()
+    .where('id', '=', req.params.id)
     .then(result => {
       res.json(result)
     })
