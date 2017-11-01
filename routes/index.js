@@ -21,6 +21,16 @@ router.get('/', function(req, res, next) {
     })
 });
 
+router.get('/badges/:id', function(req, res, next) {
+  Account
+    .query()
+    .where('id', '=', req.params.id)
+    .eager('badges')
+    .then(accounts => {
+      res.json(accounts)
+    })
+});
+
 router.get('/events', function(req, res, next) {
   Event
     .query()

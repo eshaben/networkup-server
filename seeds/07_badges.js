@@ -5,37 +5,37 @@ exports.seed = function(knex, Promise) {
       var badges = [{
         id: 1,
         points_needed: 100,
-        image: 'https://drive.google.com/open?id=0B1D72U3Cb3MJOGFuNU5CUEtHcHM',
+        image: 'https://image.ibb.co/k53DdG/newbie_badge.png',
         title: 'Newbie',
       },
       {
         id: 2,
         points_needed: 1000,
-        image: 'https://drive.google.com/open?id=0B1D72U3Cb3MJQ0VsS1Voa1hRd1E',
+        image: 'https://image.ibb.co/fCvn5w/amateur_badge.png',
         title: 'Amateur',
       },
       {
         id: 3,
         points_needed: 5000,
-        image: 'https://drive.google.com/open?id=0B1D72U3Cb3MJU3hPSXpLQXlvVms',
+        image: 'https://image.ibb.co/dHx6yG/skilled_badge.png',
         title: 'Skilled',
       },
       {
         id: 4,
         points_needed: 10000,
-        image: 'coming soon',
-        title: 'https://drive.google.com/file/d/0B1D72U3Cb3MJaFA4QUNmZjM3R0E/view',
+        image: 'https://image.ibb.co/gdKasb/advanced_badge.png',
+        title: 'Advanced'
       },
       {
         id: 5,
         points_needed: 25000,
-        image: 'https://drive.google.com/open?id=0B1D72U3Cb3MJX0hPaHVjU19MbGs',
+        image: 'https://image.ibb.co/dtGoCb/expert_badge.png',
         title: 'Expert',
       },
       {
         id: 6,
         points_needed: 41000,
-        image: 'https://drive.google.com/open?id=0B1D72U3Cb3MJVTQwZlk5c05HbWc',
+        image: 'https://image.ibb.co/hdteJG/suprememaster_badge.png',
         title: 'Supreme Master',
       }];
       return knex('badge').insert(badges);
