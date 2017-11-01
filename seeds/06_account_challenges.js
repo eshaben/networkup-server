@@ -7,6 +7,24 @@ exports.seed = function(knex, Promise) {
         completed: true,
         account_id: 1,
         challenge_id: 1
+      },
+      {
+        id: 2,
+        completed: true,
+        account_id: 1,
+        challenge_id: 2
+      },
+      {
+        id: 3,
+        completed: true,
+        account_id: 1,
+        challenge_id: 3
+      },
+      {
+        id: 4,
+        completed: true,
+        account_id: 1,
+        challenge_id: 4
       }];
       return knex('account_challenge').insert(account_challenges);
     });
