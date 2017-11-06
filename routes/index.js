@@ -170,15 +170,4 @@ router.get('/account_challenges/:id', function(req, res, next) {
     })
 })
 
-//
-// router.get('/wallets', function(req, res, next) {
-//   Account
-//     .query()
-//     .eager('wallets')
-//     .then(accounts => {
-//       res.json(accounts)
-//     })
-// });
-
-
 module.exports = router;
