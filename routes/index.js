@@ -13,12 +13,7 @@ const Goal = require('../models/Goal.js')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Account
-    .query()
-    .eager('badges')
-    .then(accounts => {
-      res.json(accounts)
-    })
+  res.render('index', {title: 'NetworkUp Server'})
 });
 
 router.get('/badges/:id', function(req, res, next) {
